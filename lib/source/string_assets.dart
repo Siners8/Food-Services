@@ -7,4 +7,9 @@ class StringAssets {
 static String order='Orders';
 static String noOrdersNow='No Orders Yet';
 static String orderNow = 'Order now';
+static String noInternet='No Internet Connection';
+static String noInternetDesc='Your internet connection is currently not available please check or try again.';
+static String tryAgain='Try Again';
+
+
 }

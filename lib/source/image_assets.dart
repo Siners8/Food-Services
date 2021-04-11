@@ -7,5 +7,6 @@ class ImageAssets{
   //Food Order
 static String backButtonIcon = 'assets/icons/chevron-left.png';
   static String cartIcon = 'assets/icons/cart.svg';
+static String nointernetIcon = "assets/icons/NoInternet.svg";
 
 }

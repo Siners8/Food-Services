@@ -7,6 +7,7 @@ import 'package:food_service/source/common_widgets.dart';
 import 'package:food_service/source/image_assets.dart';
 import 'package:food_service/source/screen_util.dart';
 import 'package:food_service/source/string_assets.dart';
+import 'package:food_service/NoInternet/NoInternet.dart';
 
 class HomeMenu extends StatefulWidget {
   @override
@@ -97,7 +98,7 @@ class _HomeMenuState extends State<HomeMenu> {
               ///SelectorOfItem
               GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FoodOrder()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NoInternet()));
                   },
                   child: CommonWidgets().button("hello")),
             ],

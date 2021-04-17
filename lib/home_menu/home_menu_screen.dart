@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_service/Food_details/food_detail.dart';
-import 'package:food_service/food_order/food_order.dart';
+import 'package:food_service/food_details/food_detail.dart';
+import 'package:food_service/home_menu/home_page.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/common_widgets.dart';
 import 'package:food_service/source/image_assets.dart';
@@ -19,35 +19,28 @@ class _HomeMenuState extends State<HomeMenu> {
     Constant.setScreenAwareConstant(context);
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(icon: SvgPicture.asset("assets/images/burger_icon.svg"), onPressed: (){
+
+          }),
+          actions: <Widget>[
+
+            IconButton(icon: SvgPicture.asset("assets/images/search_icon.svg"), onPressed: (){
+
+            }),
+            IconButton(icon: SvgPicture.asset("assets/images/filter_icon.svg"), onPressed: (){
+
+            }),
+
+          ],
+        ),
         backgroundColor: ColorAssets.themeColorWhite,
         body: Container(
           child: Column(
             children: [
-              ///Top Menu Icon and Cart Icon
-              Container(
-                padding: EdgeInsets.all(Constant.size24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      child: SvgPicture.asset(
-                        ImageAssets.menuIcon,
-                        width: Constant.size24,
-                        height: Constant.size15,
-                      ),
-                      onTap: () {},
-                    ),
-                    GestureDetector(
-                      child: SvgPicture.asset(
-                        ImageAssets.shoppingCartIcon,
-                        width: Constant.size28,
-                        height: Constant.size28,
-                      ),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
+
 
               ///DeliciousFood Text
               Container(
@@ -95,11 +88,7 @@ class _HomeMenuState extends State<HomeMenu> {
                     child: SvgPicture.asset(ImageAssets.searchIcon,)),
               ),
               ///SelectorOfItem
-              GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FoodOrder()));
-                  },
-                  child: CommonWidgets().button("hello")),
+
             ],
           ),
         ),

@@ -6,4 +6,6 @@ class ColorAssets {
   static Color themeColorWhite = Colors.white;
   static Color themeColorGrey = Color.fromRGBO(188, 186, 186, 1);
   static Color themeColorDarkPink = Color.fromRGBO(223, 44, 44, 1);
+  static Color themeColorBlack = Color.fromRGBO(0, 0, 0, 1);
+
 }

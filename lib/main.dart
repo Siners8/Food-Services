@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_service/home_menu/bottom_root.dart';
 import 'package:food_service/source/color_assets.dart';
 
 import 'home_menu/home_menu_screen.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeMenu(),
+      body: RootApp(),
     );
   }
 }

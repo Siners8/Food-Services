@@ -19,7 +19,8 @@ class _RootAppState extends State<RootApp> {
       body: IndexedStack(
         index: activeTab,
         children: <Widget>[
-         HomeMenu(),
+         HomeMenu(
+         ),
         HomePage(),
           Center(
             child: Text("Chat",style: TextStyle(

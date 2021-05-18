@@ -102,7 +102,7 @@ class _HomeMenuState extends State<HomeMenu> {
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
                   },
-                  child: CommonWidgets().button("hello")),
+                  child: CommonWidgets().button("Sign Up / LogIn")),
             ],
           ),
         ),

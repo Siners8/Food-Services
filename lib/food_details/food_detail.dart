@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:food_service/delivery/dart/delivery.dart';
 import 'package:food_service/widget/product_slider.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'dart:math' as math;
 
 import 'package:line_icons/line_icons.dart';
-
+class Cart {
+String name;
+int amount;
+String image;
+Cart({this.name,this.amount,this.image});
+}
+List<Cart> cartList=List();
 class ProductDetailPage extends StatefulWidget {
   final List<String> images;
   final String name;
@@ -174,31 +181,39 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         Positioned(
                           top: 20,
                           left: 18,
-                          child: Container(
-                            width: 35,
-                            height: 35,
-                            child: Stack(
-                              children: <Widget>[
-                                Icon(LineIcons.shoppingCart,color: ColorAssets.themeColorWhite,size: 30,),
-                                Positioned(
-                                  right: 0,
-                                  child: Container(
-                                    width: 18,
-                                    height: 18,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.red
+                          child: InkWell(
+                            onTap: (){
+                              for(int i=0;i<totalItem;i++){
+                                cartList.add(Cart(name: widget.name,amount: int.parse(widget.price),image: widget.images[0]));
+                              }
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>DeliveryDetails()));
+                            },
+                            child: Container(
+                              width: 35,
+                              height: 35,
+                              child: Stack(
+                                children: <Widget>[
+                                  Icon(LineIcons.shoppingCart,color: ColorAssets.themeColorWhite,size: 30,),
+                                  Positioned(
+                                    right: 0,
+                                    child: Container(
+                                      width: 18,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.red
+                                      ),
+                                      child: Center(
+                                        child: Text(totalItem.toString(),style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: ColorAssets.themeColorWhite
+                                        ),),
+                                      ),
                                     ),
-                                    child: Center(
-                                      child: Text(totalItem.toString(),style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: ColorAssets.themeColorWhite
-                                      ),),
-                                    ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )

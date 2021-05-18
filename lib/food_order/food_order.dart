@@ -3,6 +3,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:food_service/home_menu/home_page.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/common_widgets.dart';
 import 'package:food_service/source/image_assets.dart';
@@ -61,9 +62,15 @@ class _FoodOrderState extends State<FoodOrder> {
                   fontSize: FontSize.s22, fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
-              margin: EdgeInsets.all(Constant.size28),
-              child: CommonWidgets().button(StringAssets.orderNow)),
+          GestureDetector(
+            onTap: (){
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
+            },
+            child: Container(
+                margin: EdgeInsets.all(Constant.size28),
+                child: CommonWidgets().button(StringAssets.orderNow)),
+          ),
         ],
       ),
     );

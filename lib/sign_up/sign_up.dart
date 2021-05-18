@@ -5,6 +5,7 @@ import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/image_assets.dart';
 import 'package:food_service/source/screen_util.dart';
 import 'package:food_service/source/common_widgets.dart';
+String userName,userEmail;
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -16,6 +17,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordEditingController = TextEditingController();
   CollectionReference _collectionReference=Firestore.instance.collection('users');
   GlobalKey<FormState> formKey = GlobalKey();
+  bool valid=false;
   String password, email,name;
 
   @override
@@ -62,16 +64,10 @@ class _SignUpState extends State<SignUp> {
                       border: Border.all(color: ColorAssets.themeColorOrange.withOpacity(0.5), width: Constant.size3),
                     ),
                     child: TextFormField(
-                      validator: (value) {
-                        if (value.isNotEmpty && value.contains('@')) {
-                          return 'Valid';
-                        } else {
-                          return 'Not Valid';
-                        }
-                      },
                       onChanged: (value) {
                         setState(() {
                           name = value;
+                          userName=value;
                         });
                       },
                       cursorColor: ColorAssets.themeColorOrange,
@@ -98,17 +94,26 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: TextFormField(
                       validator: (value) {
-                        if (value.isNotEmpty && value.contains('@')) {
+                        bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+                        if (emailValid) {
+                          setState(() {
+                            valid=true;
+                          });
                           return 'Valid';
                         } else {
-                          return 'Not Valid';
+                          setState(() {
+                            valid=false;
+                          });
+                          return 'Not Valid E-mail';
                         }
                       },
                       onChanged: (value) {
                         setState(() {
                           email = value;
+                          userEmail=value;
                         });
                       },
+
                       cursorColor: ColorAssets.themeColorOrange,
                       controller: emailEditorController,
                       autocorrect: false,
@@ -135,9 +140,15 @@ class _SignUpState extends State<SignUp> {
                     child: TextFormField(
                       validator: (value) {
                         if (value.isNotEmpty && value.length > 5) {
+                          setState(() {
+                            valid=true;
+                          });
                           return 'Valid';
                         } else {
-                          return 'Not Valid';
+                          setState(() {
+                            valid=false;
+                          });
+                          return 'Password should be 6 character long';
                         }
                       },
                       onChanged: (value) {
@@ -172,6 +183,16 @@ class _SignUpState extends State<SignUp> {
                 "phone-number":"",
               });
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RootApp()));
+              final snackbar = new SnackBar(
+                content: new Text("Email : $email, password : $password"),
+              );
+             // if(valid){
+             //
+             //
+             // }
+             // else{
+             //
+             // }
             }, child: CommonWidgets().button('Done')),
           ],
         ),

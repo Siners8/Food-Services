@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_service/constant/data_json.dart';
+import 'package:food_service/delivery/dart/delivery.dart';
 import 'package:food_service/food_details/food_detail.dart';
 import 'package:food_service/food_details/restaurant_details.dart';
+import 'package:food_service/food_order/food_order.dart';
 import 'package:food_service/home_menu/home_page.dart';
+import 'package:food_service/sign_up/sign_up.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/common_widgets.dart';
 import 'package:food_service/source/image_assets.dart';
@@ -374,12 +377,12 @@ class SideDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Person name',
+                      userName.isEmpty?'Person name':userName,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: FontSize.s24),
                     ),
                     Text(
-                      'firstnamelastname@gmail.com',
+                      userEmail.isEmpty?'firstnamelastname@gmail.com':userEmail,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: FontSize.s16),
                     ),
@@ -394,22 +397,33 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(LineIcons.home),
             title: Text('Home'),
-            onTap: () => {},
+            onTap: () {
+              Navigator.of(context).pop();
+            },
           ),
-          ListTile(
-            leading: Icon(LineIcons.shoppingCart),
-            title: Text('Cart'),
-            onTap: () => {Navigator.of(context).pop()},
+          GestureDetector(
+            onTap: (){
+             cartList.isEmpty? Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FoodOrder())):Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DeliveryDetails()));
+            },
+            child: ListTile(
+              leading: Icon(LineIcons.shoppingCart),
+              title: Text('Cart:${cartList.length}'),
+            ),
           ),
           ListTile(
             leading: Icon(LineIcons.alternateTicket),
             title: Text('Coupen'),
             onTap: () => {Navigator.of(context).pop()},
           ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+          GestureDetector(
+            onTap: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignUp()));
+            },
+            child: ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Logout'),
+              onTap: () => {Navigator.of(context).pop()},
+            ),
           ),
         ],
       ),

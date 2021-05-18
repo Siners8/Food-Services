@@ -184,7 +184,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           child: InkWell(
                             onTap: (){
                               for(int i=0;i<totalItem;i++){
-                                cartList.add(Cart(name: widget.name,amount: int.parse(widget.price),image: widget.images[0]));
+                                cartList.add(Cart(name: widget.name.toString(),amount: int.parse(widget.price),image: widget.images[0]));
                               }
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>DeliveryDetails()));
                             },

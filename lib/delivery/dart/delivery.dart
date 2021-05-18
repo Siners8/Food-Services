@@ -20,14 +20,14 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
   CollectionReference _collectionReference = Firestore.instance.collection('orders');
 
   int totalAmount = 0;
-  List<String> items;
+  List<String> items=List();
 
   @override
   void initState() {
     for (int i = 0; i < cartList.length; i++) {
       setState(() {
         totalAmount = cartList[i].amount + totalAmount;
-        //items.add(cartList[i].name);
+        items.add(cartList[i].name);
       });
     }
     // TODO: implement initState
@@ -149,6 +149,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
             ),
           ),
           InkWell(
+
             onTap: () async {
               await _collectionReference.add({
                 "Order Amount": totalAmount,

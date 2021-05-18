@@ -83,7 +83,7 @@ class _ProductSliderState extends State<ProductSlider> {
 
                           width: MediaQuery.of(context).size.width,
                           child: Image(
-                            image: AssetImage(item),
+                            image: NetworkImage(item),
                           ),
                         ),
 

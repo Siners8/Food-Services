@@ -17,6 +17,7 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  int totalItem=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,36 +69,50 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),),
                     Row(
                       children: <Widget>[
-                        Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                              color: ColorAssets.themeColorBlack,
-                              borderRadius: BorderRadius.circular(5)
-                          ),
-                          child: Center(
-                            child: Text("-",style: TextStyle(
-                                color: ColorAssets.themeColorWhite
-                            ),),
+                        InkWell(
+                          onTap:(){
+                            setState(() {
+                              totalItem!=0?totalItem--:0;
+                            });
+                          },
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: ColorAssets.themeColorBlack,
+                                borderRadius: BorderRadius.circular(5)
+                            ),
+                            child: Center(
+                              child: Text("-",style: TextStyle(
+                                  color: ColorAssets.themeColorWhite
+                              ),),
+                            ),
                           ),
                         ),
                         SizedBox(width: 15,),
-                        Text("1",style: TextStyle(
+                        Text(totalItem.toString(),style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold
                         ),),
                         SizedBox(width: 15,),
-                        Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                              color: ColorAssets.themeColorBlack,
-                              borderRadius: BorderRadius.circular(5)
-                          ),
-                          child: Center(
-                            child: Text("+",style: TextStyle(
-                                color: ColorAssets.themeColorWhite
-                            ),),
+                        InkWell(
+                          onTap:(){
+                            setState(() {
+                            totalItem++;
+                            });
+                          },
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: ColorAssets.themeColorBlack,
+                                borderRadius: BorderRadius.circular(5)
+                            ),
+                            child: Center(
+                              child: Text("+",style: TextStyle(
+                                  color: ColorAssets.themeColorWhite
+                              ),),
+                            ),
                           ),
                         ),
                       ],
@@ -175,7 +190,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         color: Colors.red
                                     ),
                                     child: Center(
-                                      child: Text("1",style: TextStyle(
+                                      child: Text(totalItem.toString(),style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           color: ColorAssets.themeColorWhite

@@ -19,12 +19,8 @@ class _RootAppState extends State<RootApp> {
       body: IndexedStack(
         index: activeTab,
         children: <Widget>[
-        HomeMenu(),
-          Center(
-            child: Text("Product List",style: TextStyle(
-                fontSize: 35
-            ),),
-          ),
+         HomeMenu(),
+        HomePage(),
           Center(
             child: Text("Chat",style: TextStyle(
                 fontSize: 35
@@ -42,7 +38,7 @@ class _RootAppState extends State<RootApp> {
   Widget getBottomBar(){
     List activeTabs = [
       LineIcons.home,
-      LineIcons.barcode,
+      Icons.restaurant,
       LineIcons.comment,
       LineIcons.user
     ];

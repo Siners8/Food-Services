@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_service/Food_details/food_detail.dart';
 import 'package:food_service/food_order/food_order.dart';
+import 'package:food_service/login_signup/SignUpGithub.dart';
+import 'package:food_service/login_signup/login_signup.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/common_widgets.dart';
 import 'package:food_service/source/image_assets.dart';
@@ -98,7 +100,7 @@ class _HomeMenuState extends State<HomeMenu> {
               ///SelectorOfItem
               GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NoInternet()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
                   },
                   child: CommonWidgets().button("hello")),
             ],

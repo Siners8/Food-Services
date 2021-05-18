@@ -10,6 +10,8 @@ static String orderNow = 'Order now';
 static String noInternet='No Internet Connection';
 static String noInternetDesc='Your internet connection is currently not available please check or try again.';
 static String tryAgain='Try Again';
+static String email='Email address';
+  static String loginBtn='Login';
 
 
 }

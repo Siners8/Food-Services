@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "127470441788",
+    "project_id": "homie-delight-c5d2d",
+    "storage_bucket": "homie-delight-c5d2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127470441788:android:2013cd4d6f0d7701793a39",
+        "android_client_info": {
+          "package_name": "com.example.food_service"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127470441788-902njhlargg3g69mkb0qe0e1331985ul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_service",
+            "certificate_hash": "6bfe29b5f1a0fd1c316880197ed3d1e54423276e"
+          }
+        },
+        {
+          "client_id": "127470441788-v352c1jlk4dgbs41968rlptgcc50fop4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2HRElxPi5Tn6A0-6IolfeoJojE4b1MW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127470441788-v352c1jlk4dgbs41968rlptgcc50fop4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:food_service/constant/data_json.dart';
 import 'package:food_service/food_details/food_detail.dart';
 import 'package:food_service/source/color_assets.dart';
+import 'package:food_service/source/screen_util.dart';
+import 'package:food_service/source/string_assets.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -42,87 +44,110 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           
         ],
       ),
-      body:   Container(
-        child: ListView.builder(itemBuilder:(BuildContext context,index){
-          return  GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailPage(
-                images:[featuredProducts[index]['IMAGE'],featuredProducts[index]['IMAGE'],featuredProducts[index]['IMAGE'],],
-                name: featuredProducts[index]['NAME'],
-                price:featuredProducts[index]['PRICE'].toString(),
-                description: featuredProducts[index]['DESCRIPTION'],
-              )));
-            },
+      body: Column(
+        children: [
+          Expanded(
+            flex: 10,
             child: Container(
-              width: 160,
-              height: 160,
-
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 15,
-                    left: 0,
-                    child: Container(
-                        width: MediaQuery.of(context).size.width-30,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(60)
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: (MediaQuery.of(context).size.width-30)* 0.46,
-                            ),
-                            Expanded(child: Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(featuredProducts[index]['NAME'],style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                  SizedBox(height: 8,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(featuredProducts[index]['DESCRIPTION'].toString()),
-
-                                      Icon(Icons.add_circle)
-                                    ],),
-                                  SizedBox(height: 8,),
-                                  Text(featuredProducts[index]['PRICE'].toString(),style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                ],
-                              ),
-                            ))
-                          ],
-                        )
-                    ),
-                  ),
-                  Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        boxShadow: [BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 10,
-                            blurRadius: 15
-                        )],
-                        shape: BoxShape.circle,
-                        image: DecorationImage(image:
-                        NetworkImage(featuredProducts[index]['IMAGE']),fit: BoxFit.cover)
-                    ),
-                  )
-                ],
+              padding: EdgeInsets.only(
+                left: Constant.size16,
+                top: Constant.size20,
+                right: Constant.size24,
+              ),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Top Featured Food Items",
+                style: TextStyle(fontSize: FontSize.s24, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,
               ),
             ),
-          );
-        } ,itemCount: featuredProducts.length,),
+          ),
+          Expanded(
+            flex: 95,
+            child: Container(
+              child: ListView.builder(itemBuilder:(BuildContext context,index){
+                return  GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetailPage(
+                      images:[featuredProducts[index]['IMAGE'],featuredProducts[index]['IMAGE'],featuredProducts[index]['IMAGE'],],
+                      name: featuredProducts[index]['NAME'],
+                      price:featuredProducts[index]['PRICE'].toString(),
+                      description: featuredProducts[index]['DESCRIPTION'],
+                    )));
+                  },
+                  child: Container(
+                    width: 160,
+                    height: 160,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          top: 15,
+                          left: 0,
+                          child: Container(
+                              width: MediaQuery.of(context).size.width-30,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(60)
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: (MediaQuery.of(context).size.width-30)* 0.46,
+                                  ),
+                                  Expanded(child: Padding(
+                                    padding: const EdgeInsets.only(right: 12),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(featuredProducts[index]['NAME'],style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold
+                                        ),),
+                                        SizedBox(height: 8,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(featuredProducts[index]['DESCRIPTION'].toString()),
+
+                                            Icon(Icons.add_circle)
+                                          ],),
+                                        SizedBox(height: 8,),
+                                        Text(featuredProducts[index]['PRICE'].toString(),style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold
+                                        ),),
+                                      ],
+                                    ),
+                                  ))
+                                ],
+                              )
+                          ),
+                        ),
+                        Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              boxShadow: [BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 10,
+                                  blurRadius: 15
+                              )],
+                              shape: BoxShape.circle,
+                              image: DecorationImage(image:
+                              NetworkImage(featuredProducts[index]['IMAGE']),fit: BoxFit.cover)
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              } ,itemCount: featuredProducts.length,),
+              padding: EdgeInsets.all(15),
+            ),
+          ),
+        ],
       ),
     );
   }

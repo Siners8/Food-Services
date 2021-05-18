@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:food_service/constant/data_json.dart';
 import 'package:food_service/food_details/food_detail.dart';
+import 'package:food_service/food_details/restaurant_details.dart';
 import 'package:food_service/home_menu/home_page.dart';
 import 'package:food_service/source/color_assets.dart';
 import 'package:food_service/source/common_widgets.dart';
@@ -14,7 +16,7 @@ class HomeMenu extends StatefulWidget {
   _HomeMenuState createState() => _HomeMenuState();
 }
 
-class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin{
+class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin {
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
@@ -31,6 +33,7 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
     _menuScaleAnimation = Tween<double>(begin: 0.5, end: 1).animate(_controller);
     _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0)).animate(_controller);
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,16 +45,14 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: IconButton(icon: SvgPicture.asset("assets/images/burger_icon.svg"), onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>SideDrawer()));
-          }),
+          leading: IconButton(
+              icon: SvgPicture.asset("assets/images/burger_icon.svg"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SideDrawer()));
+              }),
           actions: <Widget>[
-
-            IconButton(icon: SvgPicture.asset("assets/images/search_icon.svg"), onPressed: (){
-
-            }),
-            IconButton(icon: SvgPicture.asset("assets/images/filter_icon.svg"), onPressed: (){
-            }),
+            IconButton(icon: SvgPicture.asset("assets/images/search_icon.svg"), onPressed: () {}),
+            IconButton(icon: SvgPicture.asset("assets/images/filter_icon.svg"), onPressed: () {}),
           ],
         ),
         backgroundColor: ColorAssets.themeColorWhite,
@@ -68,8 +69,7 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
                 alignment: Alignment.centerLeft,
                 child: Text(
                   StringAssets.delicious,
-                  style: TextStyle(
-                      fontSize: FontSize.s24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: FontSize.s24, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -81,8 +81,7 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
                 ),
                 child: Text(
                   StringAssets.food,
-                  style: TextStyle(
-                      fontSize: FontSize.s24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: FontSize.s24, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -97,19 +96,132 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(Constant.size24)),
                 ),
                 child: Container(
-                  alignment: Alignment.centerLeft,
+                    alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(Constant.size18),
                     width: Constant.size18,
                     height: Constant.size18,
-                    child: SvgPicture.asset(ImageAssets.searchIcon,)),
+                    child: SvgPicture.asset(
+                      ImageAssets.searchIcon,
+                    )),
               ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: Constant.size16,
+                  top: Constant.size20,
+                  right: Constant.size24,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Restaurant For You",
+                  style: TextStyle(fontSize: FontSize.s24, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+
               ///SelectorOfItem
+              Expanded(
+                  child: ListView.builder(
+                itemBuilder: (BuildContext context, index) {
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>RestaurantDetail(price:restaurantData[index]["RATING"] ,name: restaurantData[index]["RESTAURANT"],images: [  restaurantData[index]["IMAGE"], restaurantData[index]["IMAGE"], restaurantData[index]["IMAGE"]],description: restaurantData[index]["LOCATION"],)));
+                    },
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Container(
+                            margin: EdgeInsets.all(20),
+                            width: MediaQuery.of(context).size.width * 0.88,
+                            height: 235,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                color: ColorAssets.themeColorWhite,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: ColorAssets.themeColorBlack.withOpacity(0.5),
+                                    spreadRadius: 2.0,
+                                    offset: Offset(10.0, 10.0),
+                                    blurRadius: 20,
+                                  ),
+                                ]),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        left: Constant.size16,
+                                        top: Constant.size180,
+                                        right: Constant.size24,
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        restaurantData[index]["RESTAURANT"],
+                                        style: TextStyle(fontSize: FontSize.s20, fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        left: Constant.size16,
+                                        top: Constant.size180,
+                                        right: Constant.size24,
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        restaurantData[index]["RATING"],
+                                        style: TextStyle(fontSize: FontSize.s20, fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                  ],
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                    left: Constant.size16,
+                                    // top: Constant.size140,
+                                    right: Constant.size24,
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                   restaurantData[index]["LOCATION"],
+                                    style: TextStyle(fontSize: FontSize.s14, fontWeight: FontWeight.bold,color: ColorAssets.themeColorBlack.withOpacity(0.8)),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(20),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            child: Image.network(
+                              restaurantData[index]["IMAGE"],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                itemCount: restaurantData.length,
+              ))
             ],
           ),
         ),
       ),
     );
   }
+
   Widget menu(context) {
     return SlideTransition(
       position: _slideAnimation,
@@ -211,7 +323,10 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text("Transactions", style: TextStyle(color: Colors.white, fontSize: 20),),
+                  Text(
+                    "Transactions",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                   ListView.separated(
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
@@ -220,9 +335,11 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
                           subtitle: Text("Apple"),
                           trailing: Text("-2900"),
                         );
-                      }, separatorBuilder: (context, index) {
-                    return Divider(height: 16);
-                  }, itemCount: 10)
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(height: 16);
+                      },
+                      itemCount: 10)
                 ],
               ),
             ),
@@ -232,6 +349,7 @@ class _HomeMenuState extends State<HomeMenu> with SingleTickerProviderStateMixin
     );
   }
 }
+
 class SideDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -242,7 +360,11 @@ class SideDrawer extends StatelessWidget {
             child: Row(
               children: [
                 Center(
-                  child: Icon(Icons.person,size: Constant.size80,color: ColorAssets.themeColorWhite,),
+                  child: Icon(
+                    Icons.person,
+                    size: Constant.size80,
+                    color: ColorAssets.themeColorWhite,
+                  ),
                 ),
                 SizedBox(
                   width: Constant.size10,

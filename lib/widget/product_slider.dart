@@ -41,9 +41,7 @@ class InactiveDot extends StatelessWidget {
  */
 class ProductSlider extends StatefulWidget {
   final List<String> items;
-
   ProductSlider({this.items});
-
   @override
   _ProductSliderState createState() =>
       _ProductSliderState();
@@ -80,7 +78,6 @@ class _ProductSliderState extends State<ProductSlider> {
                     return Stack(
                       children: <Widget>[
                         Container(
-
                           width: MediaQuery.of(context).size.width,
                           child: Image(
                             image: NetworkImage(item),

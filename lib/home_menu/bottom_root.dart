@@ -20,7 +20,7 @@ class _RootAppState extends State<RootApp> {
         index: activeTab,
         children: <Widget>[
          HomeMenu(),
-        HomePage(),
+         HomePage(),
           Center(
             child: Text("Chat",style: TextStyle(
                 fontSize: 35
